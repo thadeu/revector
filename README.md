@@ -35,7 +35,7 @@ unreleased | https://github.com/thadeu/revector/blob/main/README.md
 
 | kind           | branch  | ruby               |
 | -------------- | ------- | ------------------ |
-| unreleased     | main    | >= 2.5.8, <= 3.1.x |
+| unreleased     | main    | >= 2.7 |
 
 ## Installation
 
