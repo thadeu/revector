@@ -4,11 +4,11 @@
 </p>
 
 <p align="center">
-  <a href="https://rubygems.org/gems/revector" style="text-decoration: none;">
+  <a href="https://rubygems.org/gems/revector" style="text-decoration: none !important;">
     <img alt="Gem" src="https://img.shields.io/gem/v/revector.svg">    
   </a>
 
-  <a href="https://github.com/thadeu/revector/actions/workflows/ci.yml" style="text-decoration: none;">
+  <a href="https://github.com/thadeu/revector/actions/workflows/ci.yml" style="text-decoration: none !important;">
     <img alt="Build Status" src="https://github.com/thadeu/revector/actions/workflows/ci.yml/badge.svg">
   </a>
 </p>
