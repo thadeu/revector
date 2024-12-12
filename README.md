@@ -67,14 +67,16 @@ Without configuration, because we use only Ruby. ❤️
 | ----------- | ----------- | ----------- |
 | Equal | eq      | Anywhere |
 | NotEqual | noteq        | Anywhere |
+| Exists | ex        | Anywhere |
+| NotExists | not_ex        | Anywhere |
 | Contains | cont        | Anywhere |
-| NotContains | notcont        | Anywhere |
+| NotContains | notcont, not_cont        | Anywhere |
 | Included | in  | Anywhere |
-| NotIncluded | notin        | Anywhere |
-| Start | start        | Anywhere |
-| NotStart | notstart        | Anywhere |
+| NotIncluded | notin, not_in       | Anywhere |
+| Start | start, st        | Anywhere |
+| NotStart | notstart, notst, not_start, not_st        | Anywhere |
 | End | end        | Anywhere |
-| NotEnd | notend        | Anywhere |
+| NotEnd | notend, not_end        | Anywhere |
 | LessThan | lt        | Anywhere |
 | LessThanEqual | lteq        | Anywhere |
 | GreaterThan | gt        | Anywhere |

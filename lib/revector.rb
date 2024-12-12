@@ -3,9 +3,10 @@
 require 'set'
 
 require_relative 'revector/utility'
+require_relative 'revector/predicate/equal'
+require_relative 'revector/predicate/exists'
 require_relative 'revector/predicate/startify'
 require_relative 'revector/predicate/endify'
-require_relative 'revector/predicate/equal'
 require_relative 'revector/predicate/contains'
 require_relative 'revector/predicate/in'
 require_relative 'revector/predicate/less_than'
@@ -54,6 +55,7 @@ class Revector
 
       case right
       in [*]
+        right = [''] unless right.any?
         Array(right).any? { |o| predicatable.compare(o, valueable) }
       else
         predicatable.compare(right, valueable)
@@ -67,7 +69,7 @@ class Revector
     predicate = Array(parts[-2..]).filter do |pkey|
       next unless PREDICATES.include? pkey
 
-      parts = parts - [pkey]
+      parts -= [pkey]
 
       pkey
     end&.last || :eq
@@ -103,21 +105,25 @@ class Revector
       not_end: NotEndify,
       in: Included,
       notin: NotIncluded,
-      not_in: NotIncluded
+      not_in: NotIncluded,
+      ex: Exists,
+      not_ex: NotExists
     }[named.to_sym || :eq]
   end
   private_constant :Predicate
 
   AFFIRMATIVES = %w[
-    eq
+    eq ex
     in cont
     lt lteq
     gt gteq
-    st start end
+    st start
+    end
   ].freeze
 
   NEGATIVES = %w[
     noteq not_eq
+    not_ex
     notcont not_cont
     notstart notst not_start not_st
     notend not_end

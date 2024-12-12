@@ -17,7 +17,7 @@ class Revector
     end
 
     def self.compare(value, expected_value)
-      !Equal.compare(value, expected_value)
+      !Exists.compare(value) && !Equal.compare(value, expected_value)
     end
   end
 end

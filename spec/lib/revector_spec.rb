@@ -9,6 +9,7 @@ RSpec.describe Revector do
         id: 1,
         name: 'Test #1',
         email: 'test1@email1.com',
+        contact_id: '1',
         schedule: { all_day: true, opened: true },
         numbers: %w[1 2],
         phones: [
@@ -22,6 +23,7 @@ RSpec.describe Revector do
         id: 2,
         name: 'Test #2',
         email: 'test2@email2.com',
+        contact_id: '2',
         schedule: { all_day: false, opened: false },
         numbers: %w[3 4],
         phones: [],
@@ -32,6 +34,7 @@ RSpec.describe Revector do
         id: 3,
         name: 'Test #3',
         email: 'test3@email3.com',
+        contact_id: '',
         schedule: { all_day: false, opened: false },
         numbers: %w[5 6],
         phones: [
@@ -44,6 +47,40 @@ RSpec.describe Revector do
   end
 
   context 'Deep values' do
+    context 'ex' do
+      it 'if the value is not empty' do
+        filters = { 'phones.number': { ex: 'true' } }
+
+        collection = described_class.swap(data, filters)
+
+        expect(collection.size).to eq(2)
+      end
+
+      it 'if the value is not empty' do
+        filters = { 'phones.number': { not_ex: 'true' } }
+
+        collection = described_class.swap(data, filters)
+
+        expect(collection.size).to eq(1)
+      end
+
+      it 'if the value is not empty' do
+        filters = { contact_id: { ex: 'true' } }
+
+        collection = described_class.swap(data, filters)
+
+        expect(collection.size).to eq(2)
+      end
+
+      it 'if the value is empty' do
+        filters = { contact_id: { not_ex: 'true' } }
+
+        collection = described_class.swap(data, filters)
+
+        expect(collection.size).to eq(1)
+      end
+    end
+
     context 'eq' do
       context 'array of hash' do
         it 'match array values in deep structure' do
