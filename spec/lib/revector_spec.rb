@@ -16,6 +16,7 @@ RSpec.describe Revector do
           { number: '123', ddd: '10', position: { value: [1], status: { enum: %w[online] } } },
           { number: '456', ddd: '11', position: { value: [2], status: { enum: %w[offline] } } }
         ],
+        arr_empty: nil,
         active: true,
         count: 9
       },
@@ -27,6 +28,7 @@ RSpec.describe Revector do
         schedule: { all_day: false, opened: false },
         numbers: %w[3 4],
         phones: [],
+        arr_empty: nil,
         active: true,
         count: 10
       },
@@ -40,6 +42,7 @@ RSpec.describe Revector do
         phones: [
           { number: '789', ddd: '13' },
         ],
+        arr_empty: nil,
         active: false,
         count: 99
       }
@@ -48,6 +51,14 @@ RSpec.describe Revector do
 
   context 'Deep values' do
     context 'ex' do
+      it 'if the value is not exists' do
+        filters = { arr_empty: { ex: 'true' } }
+
+        collection = described_class.swap(data, filters)
+
+        expect(collection.size).to eq(0)
+      end
+
       it 'if the value is not empty' do
         filters = { 'phones.number': { ex: 'true' } }
 
